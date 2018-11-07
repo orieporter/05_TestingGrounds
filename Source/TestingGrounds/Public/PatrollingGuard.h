@@ -18,5 +18,6 @@ protected:
 	UPROPERTY(EditInstanceOnly, Category = "Patrol")
 		TArray<AActor*> PatrolPoints;
 	
-	
+public:
+	TArray<AActor*> GetPatrolPoints() const;
 };

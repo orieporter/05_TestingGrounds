@@ -10,9 +10,9 @@
 EBTNodeResult::Type UFocusAtPoint::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	auto BlackboardComponent = OwnerComp.GetBlackboardComponent();
-	BlackboardComponent->SetValueAsVector(FocalPointKey.SelectedKeyName, UGameplayStatics::GetPlayerPawn(this, 0)->GetActorLocation());
-	auto FocalPoint = BlackboardComponent->GetValueAsVector(FocalPointKey.SelectedKeyName);
-	OwnerComp.GetAIOwner()->SetFocalPoint(FocalPoint);
+	BlackboardComponent->SetValueAsObject(FocalPointKey.SelectedKeyName, UGameplayStatics::GetPlayerPawn(this, 0));
+	auto FocalPoint = Cast<AActor>(BlackboardComponent->GetValueAsObject(FocalPointKey.SelectedKeyName));
+	OwnerComp.GetAIOwner()->SetFocus(FocalPoint);
 
 	return EBTNodeResult::Succeeded;
 }
